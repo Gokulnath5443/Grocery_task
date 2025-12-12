@@ -20,7 +20,6 @@ form.addEventListener("submit", (e) => {
     alert.innerText = "Enter Valid input";
     alert.classList.add("alert-danger");
 
-
   setTimeout(() => {
     alert.innerText = "";
     alert.classList.remove("alert-danger");
@@ -31,7 +30,12 @@ form.addEventListener("submit", (e) => {
   if (edit) {
 
     editItem.querySelector(".title").innerText = value;
-    showAlert("Edited successfully", "alert-success");
+     alert.innerText = "Edited successfully";
+    alert.classList.add("alert-success");
+     setTimeout(() => {
+    alert.innerText = "";
+    alert.classList.remove("alert-success");
+  }, 2000);
     submitBtn.innerText = "Submit";
     edit = false;
     editItem = null;
@@ -49,7 +53,12 @@ form.addEventListener("submit", (e) => {
     `;
 
     list.appendChild(div);
-    showAlert("Added successfully", "alert-success");
+   alert.innerText = "Added successfully";
+    alert.classList.add("alert-success");
+     setTimeout(() => {
+    alert.innerText = "";
+    alert.classList.remove("alert-success");
+  }, 2000);
     clearBtn.style.display = "grid";
   }
 
@@ -64,33 +73,38 @@ list.addEventListener("click", (e) => {
 
   if (e.target.closest(".delete-btn")) {
     item.remove();
-    showAlert("Item removed", "alert-danger");
+  
+     alert.innerText = "Item removed";
+    alert.classList.add("alert-danger");
+     setTimeout(() => {
+    alert.innerText = "";
+    alert.classList.remove("alert-danger");
+  }, 2000);
+
+
     if (list.children.length === 0) clearBtn.style.display = "none";
   }
 
 
   if (e.target.closest(".edit-btn")) {
     input.value = item.querySelector(".title").innerText;
+   
     edit = true;
     editItem = item;
     submitBtn.innerText = "Edit";
+      //  item.remove()
   }
 });
 
 
 clearBtn.addEventListener("click", () => {
   list.innerHTML = "";
-  clearBtn.style.display = "none";
-  showAlert("List cleared", "alert-danger");
+  clearBtn.style.display = "none";  
+    alert.innerText = "List cleared";
+    alert.classList.add("alert-danger");
+     setTimeout(() => {
+    alert.innerText = "";
+    alert.classList.remove("alert-danger");
+  }, 2000);
 });
 
-
-function showAlert(msg, className) {
-  alert.innerText = msg;
-  alert.classList.add(className);
-
-  setTimeout(() => {
-    alert.innerText = "";
-    alert.classList.remove(className);
-  }, 2000);
-}
